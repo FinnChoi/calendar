@@ -1,0 +1,143 @@
+body{
+    margin: 0;
+    font-family: Roboto, 'Noto Sans KR', Arial, sans-serif;
+    overflow-x: hidden;
+}
+h2{
+    margin-block-start: 0.7em;
+}
+button{
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+}
+button:hover{
+    background-color: #eee;
+}
+#header{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 20px;
+    position: sticky;
+    width: 100%;
+    height: 5vh;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    min-height: 40px;
+}
+.header__logo{
+    width: 14em;
+    height: 100%;
+}
+.header__button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 9rem;
+}
+.header__button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+}
+.go-today{
+    border: 1px solid #ddd;
+    width: 3rem;
+}
+.go-prev{
+    border-radius: 20px;
+    padding-left: .6rem;
+}
+.go-next{
+    border-radius: 20px;
+    padding-right: .6rem;
+}
+.header__button-icon{
+    content: ' ';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+}
+.arrow-left{
+    transform: rotate(45deg);
+}
+.arrow-right{
+    transform: rotate(-135deg);
+}
+#main{
+    display: flex;
+    flex-direction: row;
+    height: 93vh;
+}
+.navigation{
+    display: flex;
+    flex-shrink: 0;
+    border-right: 1px solid #ddd;    
+    width: 16em;
+    height: 100%;
+    min-height: 40px;
+}
+.main-content__container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.week{
+    display: flex;
+    flex-direction: row;
+    font-size: 0.85rem;
+    text-align: center;
+}
+.week > :first-child{
+    color: red;    
+}
+.week > :last-child{
+    color: blue;
+}
+.week__head > .date{
+    border-bottom: none;
+}
+.week__body{
+    height: 16vh;
+}
+.date{
+    width: 100%;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+/*
+@media screen and (max-width: 600px) {
+    .header__logo{
+        display: none;
+    }
+    .navigation{
+        display: none;
+        width: 0px;
+    }
+}
+@media (prefers-color-scheme: dark){
+    body{
+        background-color: #202b38;
+        color: #fff;
+    }
+    button{
+        color: #fff;
+    }
+    button:hover{
+        background-color: #666;
+    }
+    .header__button-icon{
+        border-left: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+    }
+}
