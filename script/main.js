@@ -21,10 +21,10 @@ function drawDate(date){
 
 	const year = date.getFullYear();
 	const month = date.getMonth();
-	let day = (date.getDay() == 0) ? -6 : -(date.getDay() - 1);
+	let day = date.getDay() == 0 ? -6 : -(date.getDay() - 1);
 
 	document.querySelectorAll('.week__body > .date').forEach((e)=>{
-		const d = new Date(year, month, day);
+		const d = new Date(year, month, day++);
         
         if(d.getMonth() != month){
             let color = 'lightgrey';
@@ -37,6 +37,5 @@ function drawDate(date){
 
         e.innerHTML = d.getDate();
         e.setAttribute('date', `${new Date( + d + 3240 * 10000).toISOString().split("T")[0]}`);
-        day++;
 	});
 }
