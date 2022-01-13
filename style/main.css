@@ -115,7 +115,6 @@ button:hover{
     border-bottom: 1px solid #ddd;
 }
 
-/*
 @media screen and (max-width: 600px) {
     .header__logo{
         display: none;
@@ -125,6 +124,7 @@ button:hover{
         width: 0px;
     }
 }
+/*
 @media (prefers-color-scheme: dark){
     body{
         background-color: #202b38;
