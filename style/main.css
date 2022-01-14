@@ -1,7 +1,12 @@
+html{
+    height: 100%;
+}
 body{
+    height:  100%;
     margin: 0;
     font-family: Roboto, 'Noto Sans KR', Arial, sans-serif;
     overflow-x: hidden;
+    cursor: default;
 }
 h2{
     margin-block-start: 0.7em;
@@ -10,19 +15,31 @@ button{
     background-color: transparent;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
+}
+.arrow-button{
+    content: ' ';
+    display: inline-block;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+}
+.arrow-left{
+    transform: rotate(45deg);
+}
+.arrow-right{
+    transform: rotate(-135deg);
 }
 button:hover{
     background-color: #eee;
 }
 #header{
     display:flex;
-    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     column-gap: 20px;
     position: sticky;
     width: 100%;
-    height: 5vh;
+    height: 5%;
     padding: 10px;
     border-bottom: 1px solid #ddd;
     min-height: 40px;
@@ -33,14 +50,12 @@ button:hover{
 }
 .header__button-container{
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     width: 9rem;
 }
 .header__button{
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 1.8rem;
@@ -59,60 +74,45 @@ button:hover{
     padding-right: .6rem;
 }
 .header__button-icon{
-    content: ' ';
-    display: inline-block;
     width: 8px;
     height: 8px;
-    border-left: 2px solid #333;
-    border-bottom: 2px solid #333;
-}
-.arrow-left{
-    transform: rotate(45deg);
-}
-.arrow-right{
-    transform: rotate(-135deg);
 }
 #main{
     display: flex;
-    flex-direction: row;
-    height: 93vh;
+    height: 93%
 }
 .navigation{
     display: flex;
+    justify-content: center;
     flex-shrink: 0;
     border-right: 1px solid #ddd;    
     width: 16em;
-    height: 100%;
     min-height: 40px;
 }
-.main-content__container{
-    display: flex;
-    flex-direction: column;
+.navigation__calendar{
     width: 100%;
-    height: 100%;
+    margin: 10px;
+}
+.calendar__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.calendar__button-icon{
+    width: 5px;
+    height: 5px;
+}
+.main-content__container{
+    width: 100%;
 }
 .week{
     display: flex;
-    flex-direction: row;
-    font-size: 0.85rem;
-    text-align: center;
-}
-.week > :first-child{
-    color: red;    
-}
-.week > :last-child{
-    color: blue;
-}
-.week__head > .date{
-    border-bottom: none;
-}
-.week__body{
-    height: 16vh;
+    width: 100%;
 }
 .date{
     width: 100%;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    text-align: center;
+    color: #aaa;
 }
 
 @media screen and (max-width: 600px) {

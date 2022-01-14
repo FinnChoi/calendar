@@ -15,10 +15,10 @@
                 <span class="header__button-label">Today</span>
             </button>
             <button class="header__button go-prev">
-                <span class="header__button-icon arrow-left"></span>
+                <span class="header__button-icon arrow-button arrow-left"></span>
             </button>
             <button class="header__button go-next">
-                <span class="header__button-icon arrow-right"></span>
+                <span class="header__button-icon arrow-button arrow-right"></span>
             </button>
         </div>
         <div class="header__text">
@@ -27,27 +27,22 @@
     </div>
     <div id="main">    
         <div class="navigation">
-            <div class="navigation__calendar"></div>
+            <div class="navigation__calendar">
+                <div class="calendar__header">
+                    <div class="calendar__button-container">
+                        <button class="calendar__button go-prev">
+                            <span class="calendar__button-icon arrow-button arrow-left"></span>
+                        </button>
+                        <button class="calendar__button go-next">
+                            <span class="calendar__button-icon arrow-button arrow-right"></span>
+                        </button>
+                    </div>
+                    <div class="calendar__title targat-date"></div>
+                </div>   
+                <div class="calendar-container"></div>
+            </div>
         </div>
         <div class="main-content__container">
-            <div class="week week__head">
-                <div class="date">월</div>
-                <div class="date">화</div>
-                <div class="date">수</div>
-                <div class="date">목</div>
-                <div class="date">금</div>
-                <div class="date">토</div>
-                <div class="date">일</div>
-            </div>
-            <div class="week week__body">
-                <div class="date"></div>
-                <div class="date"></div>
-                <div class="date"></div>
-                <div class="date"></div>
-                <div class="date"></div>
-                <div class="date"></div>
-                <div class="date"></div>
-            </div>
         </div>
     </div>
     <div></div>

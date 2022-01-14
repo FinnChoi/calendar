@@ -1,55 +1,72 @@
 'use strict';
-onload = function(){
-    const main = document.querySelector('.main-content__container');
-    const week = document.querySelector('.week__body');
-
-    while(main.childElementCount != 7){
-        main.append(week.cloneNode(true));
-    } 
-
-    mainContent.drawMonth();
-}
-const headerContent = {
-    goToday : function(){
-        
+class Calendar{
+    /**
+     * @param {Date} targetDate 
+     */
+    constructor(targetDate){
+       this.targetDate = targetDate;
+       this.year = targetDate.getFullYear();
+       this.month = targetDate.getMonth();
+       this.date = targetDate.getDate();
     }
-}
-const navContent = {
-    drawCalendar : function(){
+    /**
+     * Draw Calendar in target node
+     * @param {string} targetNodeName string for query selector
+     * @returns {string} "yyyy년 mm월"
+     */
+    draw = function(targetNodeName, column = 1, row = 1) {
+        if(!targetNodeName || isNaN(row) || isNaN(column)) return;
+        row = column > 1 ? 7 : row;
 
-    }
-}
-const mainContent = {
-    drawMonth : function(date){
-        if(!date || date.getDate() != 1){
-            const d = new Date();
-            date = new Date(d.getFullYear(), d.getMonth(), 1);
+        const ctnr = document.querySelector(`${targetNodeName}`);
+        const week = document.createElement('div');
+        week.classList.add('week');
+        const date = document.createElement('div');
+        date.classList.add('date');
+
+        for(let i = 0; i < row; ++i){
+            week.append(date.cloneNode());
         }
-    
-        const title = document.querySelector('.header__text  > :first-child');
-        title.innerHTML = `${date.getFullYear()}년 ${date.getMonth()+1}월`;
-    
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        let day = date.getDay() == 0 ? -6 : -(date.getDay() - 1);
-    
-        document.querySelectorAll('.week__body > .date').forEach((e)=>{
-            const d = new Date(year, month, day++);
-            
-            if(d.getMonth() != month){
-                let color = 'lightgrey';
-    
-                if (d.getDay() == 0 ) color =  '#ffcdd2';
-                else if (d.getDay() == 6)  color = '#bbdefb';
-    
-                e.setAttribute('style', 'color: ' + color);
-            }
-    
-            e.innerHTML = d.getDate();
-            e.setAttribute('date', `${new Date( + d + 3240 * 10000).toISOString().split("T")[0]}`);
-        });
-    },
-    drawWeek : function(date){
+        for(let i = 0; i < column + 1; ++i){
+            ctnr.append(week.cloneNode(true));
+        } 
 
+        let height = ctnr.clientHeight;
+        document.querySelectorAll(`${targetNodeName} > .week`)
+        .forEach((cur, idx)=>{
+            if(idx == 0) cur.classList.add('week-head');
+            else {
+                cur.classList.add('week-body');
+                if(height != 0) cur.setAttribute('style', `height: ${(96.5 / column).toFixed()}%`);
+            }
+        });
+        
+        const days = ['일','월','화','수','목','금','토'];
+        let dayIdx = row == 7 ?  0 : this.targtDate.getDay();
+        document.querySelectorAll(`${targetNodeName} > .week-head > .date`)
+        .forEach((cur) => {
+            cur.innerHTML = days[dayIdx++];
+            if(dayIdx > 6) dayIdx = 0;
+        });
+        
+        let startDate = row != 7 ?  this.targetDate : new Date(this.year, this.month,  this.date - this.targetDate.getDay());
+        document.querySelectorAll(`${targetNodeName} > .week-body > .date`)
+        .forEach((cur) => {
+            cur.innerHTML = startDate.getDate();
+            startDate.setDate(startDate.getDate() + 1);
+        });
+
+        return `${this.year}년 ${this.month + 1}월`;
     }
+}
+
+const today = new Date();
+const navCal = new Calendar(new Date(today.getFullYear(), today.getMonth(), 1));
+const mainCal = new Calendar(new Date(today.getFullYear(), today.getMonth(), 1));
+
+onload = function(){
+    document.querySelector('.calendar__header > .targat-date').innerHTML 
+        = navCal.draw('.navigation__calendar > .calendar-container', 6);
+    document.querySelector('.header__text').innerHTML 
+        = mainCal.draw('.main-content__container', 1, 7);
 }
