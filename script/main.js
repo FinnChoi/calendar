@@ -11,14 +11,15 @@ class Calendar{
     }
     /**
      * Draw Calendar in target node
-     * @param {string} targetNodeName string for query selector
+     * @param {string} targetNode string for query selector
      * @returns {string} "yyyy년 mm월"
      */
-    draw = function(targetNodeName, column = 1, row = 1) {
-        if(!targetNodeName || isNaN(row) || isNaN(column)) return;
+    draw = function(targetNode, column = 1, row = 1) {
+        if(!targetNode || isNaN(row) || isNaN(column)) return;
         row = column > 1 ? 7 : row;
 
-        const ctnr = document.querySelector(`${targetNodeName}`);
+        const ctnr = document.querySelector(`${targetNode}`);
+        ctnr.remove
         const week = document.createElement('div');
         week.classList.add('week');
         const date = document.createElement('div');
@@ -32,7 +33,7 @@ class Calendar{
         } 
 
         let height = ctnr.clientHeight;
-        document.querySelectorAll(`${targetNodeName} > .week`)
+        document.querySelectorAll(`${targetNode} > .week`)
         .forEach((cur, idx)=>{
             if(idx == 0) cur.classList.add('week-head');
             else {
@@ -43,14 +44,14 @@ class Calendar{
         
         const days = ['일','월','화','수','목','금','토'];
         let dayIdx = row == 7 ?  0 : this.targtDate.getDay();
-        document.querySelectorAll(`${targetNodeName} > .week-head > .date`)
+        document.querySelectorAll(`${targetNode} > .week-head > .date`)
         .forEach((cur) => {
             cur.innerHTML = days[dayIdx++];
             if(dayIdx > 6) dayIdx = 0;
         });
         
         let startDate = row != 7 ?  this.targetDate : new Date(this.year, this.month,  this.date - this.targetDate.getDay());
-        document.querySelectorAll(`${targetNodeName} > .week-body > .date`)
+        document.querySelectorAll(`${targetNode} > .week-body > .date`)
         .forEach((cur) => {
             cur.innerHTML = startDate.getDate();
             startDate.setDate(startDate.getDate() + 1);
